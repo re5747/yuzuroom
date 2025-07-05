@@ -1,0 +1,58 @@
+/* 全体の背景色とフォント */
+body {
+  background-color: #FFF8E7; /* 柔らかいクリーム色 */
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: #4A4A4A; /* ダークグレー文字 */
+  margin: 0;
+  padding: 0;
+}
+
+/* ヘッダーの色とスタイル */
+header {
+  background-color: #F6E27F; /* 柚子イエロー */
+  color: #4A4A4A;
+  padding: 20px;
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+/* フッターの色とスタイル */
+footer {
+  background-color: #A9C966; /* 柚子グリーン */
+  color: white;
+  padding: 15px 10px;
+  text-align: center;
+  font-size: 1rem;
+}
+
+/* 見出しのスタイル */
+h1 {
+  font-size: 2.5rem;
+  color: #F2A65A; /* 柚子オレンジ */
+  margin-bottom: 0.5em;
+}
+
+h2 {
+  font-size: 2rem;
+  color: #A9C966; /* 柚子グリーン */
+  margin-bottom: 0.5em;
+}
+
+h3 {
+  font-size: 1.5rem;
+  color: #F6E27F; /* ゆずイエロー */
+  margin-bottom: 0.5em;
+}
+
+h4 {
+  font-size: 1.2rem;
+  color: #4A4A4A; /* ダークグレー */
+  margin-bottom: 0.5em;
+}
+
+h5 {
+  font-size: 1rem;
+  color: #777777; /* 薄めのグレー */
+  margin-bottom: 0.5em;
+}
