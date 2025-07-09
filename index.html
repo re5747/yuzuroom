@@ -7,7 +7,96 @@
 <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
+  <h1>進路妨害パズル</h1>
+  <div class="grid" id="grid"></div>
+  <button onclick="setMode('obstacle')">🧱 障害物を置く</button>
+  <button onclick="startGame()">▶ スタート</button>
 
+  <script>
+    const size = 6;
+    const grid = document.getElementById('grid');
+    let mode = 'obstacle';
+    let playerPos = { x: 0, y: 2 }; // 初期位置
+    const goalPos = { x: 5, y: 3 };
+    const direction = { x: 1, y: 0 }; // 右方向
+    const cells = [];
+
+    function createGrid() {
+      grid.innerHTML = '';
+      for (let y = 0; y < size; y++) {
+        cells[y] = [];
+        for (let x = 0; x < size; x++) {
+          const div = document.createElement('div');
+          div.className = 'cell';
+          div.dataset.x = x;
+          div.dataset.y = y;
+          div.addEventListener('click', handleClick);
+          grid.appendChild(div);
+          cells[y][x] = { type: 'empty', el: div };
+        }
+      }
+      updateCell(playerPos.x, playerPos.y, 'player');
+      updateCell(goalPos.x, goalPos.y, 'goal');
+    }
+
+    function handleClick(e) {
+      const x = parseInt(e.currentTarget.dataset.x);
+      const y = parseInt(e.currentTarget.dataset.y);
+      if (mode === 'obstacle' && (x !== playerPos.x || y !== playerPos.y)) {
+        updateCell(x, y, 'obstacle');
+      }
+    }
+
+    function updateCell(x, y, type) {
+      const cell = cells[y][x];
+      cell.type = type;
+      cell.el.className = 'cell ' + type;
+      cell.el.textContent = type === 'player' ? '🧍‍♂️' : type === 'goal' ? '🎯' : '';
+    }
+
+    function setMode(m) {
+      mode = m;
+    }
+
+    function startGame() {
+      let pos = { ...playerPos };
+      let dir = { ...direction };
+      const interval = setInterval(() => {
+        const nextX = pos.x + dir.x;
+        const nextY = pos.y + dir.y;
+
+        if (nextX < 0 || nextX >= size || nextY < 0 || nextY >= size) {
+          clearInterval(interval);
+          alert('壁にぶつかりました！');
+          return;
+        }
+
+        const nextCell = cells[nextY][nextX];
+        if (nextCell.type === 'obstacle') {
+          // 右に90度曲がる（x,y）→（-y,x）
+          const temp = dir.x;
+          dir.x = -dir.y;
+          dir.y = temp;
+          return;
+        }
+
+        updateCell(pos.x, pos.y, 'empty');
+        pos.x = nextX;
+        pos.y = nextY;
+
+        if (pos.x === goalPos.x && pos.y === goalPos.y) {
+          updateCell(pos.x, pos.y, 'player');
+          clearInterval(interval);
+          alert('ゴールに到達！');
+          return;
+        }
+
+        updateCell(pos.x, pos.y, 'player');
+      }, 500);
+    }
+
+    createGrid();
+  </script>
 <header>
   Yuzu Room
 </header>
