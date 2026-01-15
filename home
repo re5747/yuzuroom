@@ -13,12 +13,62 @@ h1{margin:0;padding:12px;text-align:center;background:#6fbf9c;color:#fff;}
 .popup h3{margin:0 0 4px;font-size:14px;color:#2f6f4e;}
 .popup p{margin:0;font-size:12px;}
 .leaflet-tooltip{border-radius:10px;border:1px solid #9fdcc0;}
+body {
+  margin: 0;
+  font-family: "Yu Gothic", "Hiragino Maru Gothic ProN", sans-serif;
+}
+
+.site-header {
+  text-align: center;
+  padding: 12px;
+  background: #6fbf9c;
+  color: white;
+}
+
+/* ★ 地図を500px枠に収める */
+#map-wrapper {
+  height: 500px;     /* ここがポイント */
+  width: 100%;
+  overflow: hidden;
+  border-bottom: 4px solid #e2f3eb;
+}
+
+#map {
+  height: 100%;      /* wrapperに追従 */
+  width: 100%;
+}
+
+#articles {
+  padding: 24px;
+  background: #f7fff9;
+}
+
+#articles h2 {
+  margin-top: 0;
+  color: #2f6f4e;
+}
+
+#articles article {
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px dashed #b7e2cd;
+}
+
+.site-footer {
+  text-align: center;
+  padding: 16px;
+  background: #4f8f73;
+  color: white;
+  font-size: 12px;
+}
+
+
 </style>
 </head>
 
 <body>
-<h1>🍵 日本の茶産地100マップ</h1>
-<div id="map"></div>
+<header class="site-header"><h1>🍵 日本の茶産地100マップ</h1></header>
+<section id="map-wrapper"><div id="map"></div></section>
 <div class="notice">
 掲載している名称は実在の地名（茶産地）です。特定の事業者・農園を指すものではありません。
 </div>
@@ -107,5 +157,28 @@ const html=`<div class="popup"><h3>${r[0]}</h3><p>${r[3][0]}</p><p>${r[3][1]}</p
 L.marker([r[1],r[2]],{icon}).addTo(map).bindTooltip(html,{sticky:true});
 });
 </script>
+
+<section id="articles">
+  <h2>📰 最近公開した記事</h2>
+
+  <article>
+    <h3>春の新茶シーズンが始まりました</h3>
+    <p>全国の茶産地で新茶の収穫が始まっています。</p>
+  </article>
+
+  <article>
+    <h3>深蒸し茶と浅蒸し茶の違い</h3>
+    <p>製法による味と香りの違いを紹介します。</p>
+  </article>
+
+  <article>
+    <h3>おいしいお茶の淹れ方</h3>
+    <p>家庭でできる基本的な淹れ方を解説。</p>
+  </article>
+</section>
+
+<footer class="site-footer">
+  <p>© 2026 Tea Map Project</p>
+</footer>
 </body>
 </html>
